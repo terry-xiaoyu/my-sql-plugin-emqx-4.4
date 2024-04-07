@@ -8,7 +8,7 @@ This is a demo plugin project for EMQX version 4.3.x and 4.4.x
 
 ```shell
 git clone https://github.com/terry-xiaoyu/my-sql-plugin-emqx-4.4.git
-make tar
+cd my-sql-plugin-emqx-4.4 && make tar
 ```
 
 After compiling, you will get the target files (`ebin` and `priv`) in `_build/my_sql_plugin.tar.gz`:
@@ -39,12 +39,17 @@ Where `$EMQX4_PATH` must be replaced with your actual EMQX installation path set
 
 4. Re-start EMQX to apply the config changes.
 
+```shell
+emqx stop
+emqx start
+```
+
 Plugins in `plugins.expand_plugins_dir` will be loaded automatically when EMQX starts.
 
-5. Test it by create a rule:
+5. Test it by creating a rule:
 
 ```SQL
 SELECT emqx_rule_funcs2.echo('a') as var FROM "t/#"
 ```
 
-Note that the module that contains the sql functions must be prefixed by `emqx_rule_funcs`, e.g. `emqx_rule_funcs2`.
+NOTE: the Erlang module that contains the sql functions must be prefixed by `emqx_rule_funcs`, e.g. `emqx_rule_funcs2`.

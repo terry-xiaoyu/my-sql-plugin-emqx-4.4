@@ -8,26 +8,26 @@ This is a demo plugin project for EMQX version 4.3.x and 4.4.x
 
 ```shell
 git clone https://github.com/terry-xiaoyu/my-sql-plugin-emqx-4.4.git
-./rebar3 compile
-```
-After compiling, you will get the target plugin files (`ebin` and `priv`) in `_build/default/lib/my_sql_plugin/`:
-
-```shell
-mkdir ./my_sql_plugin
-cp -r _build/default/lib/my_sql_plugin/ebin _build/default/lib/my_sql_plugin/priv ./my_sql_plugin
+make tar
 ```
 
-2. Copy the plugin to the EMQX plugin directory
+After compiling, you will get the target files (`ebin` and `priv`) in `_build/my_sql_plugin.tar.gz`:
+
+2. Copy target files of the plugin to EMQX
 
 ```shell
 ## set it to your EMQX installation path, and make sure the `emqx` user has permission to access it
 export EMQX4_PATH=/var/lib/emqx
 
+## copy the plugin tarball to EMQX data directory
 mkdir -p $EMQX4_PATH/data/plugins
-cp -r ./my_sql_plugin $EMQX4_PATH/data/plugins/
+cp -r _build/my_sql_plugin.tar.gz $EMQX4_PATH/data/plugins/
+
+## extract the tarball
+cd $EMQX4_PATH/data/plugins/ && tar -zxvf my_sql_plugin.tar.gz
 ```
 
-3. Change the `expand_plugins_dir` in `emqx.conf`
+3. Update the `expand_plugins_dir` config in `emqx.conf`
 
 ```shell
 vi etc/emqx.conf

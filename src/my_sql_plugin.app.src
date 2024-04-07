@@ -1,0 +1,10 @@
+{application, my_sql_plugin,
+ [{description, "My Rule SQL Plugin"},
+  {vsn, "git"},
+  {modules, []},
+  {registered, [my_sql_plugin_sup]},
+  {applications, [kernel,stdlib]},
+  {mod, {my_sql_plugin_app,[]}},
+  {env, []},
+  {licenses, ["Apache-2.0"]}
+ ]}.

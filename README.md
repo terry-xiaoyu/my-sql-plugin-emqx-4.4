@@ -1,6 +1,6 @@
 # emqx-sql-plugin-demo
 
-This is a demo plugin project for EMQX version 4.3.x and 4.4.x
+This is a demo plugin project for EMQX 4.4.24 to add customized SQL functions to rule engine.
 
 ## How to use
 
